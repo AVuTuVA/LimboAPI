@@ -44,6 +44,8 @@ public class SimpleWorld implements VirtualWorld {
   private final List<List<VirtualChunk>> distanceChunkMap = new ArrayList<>();
   @NonNull
   private final Dimension dimension;
+  @NonNull
+  private final String worldName;
   private final VirtualBiome defaultBiome;
 
   private final double spawnX;
@@ -53,7 +55,13 @@ public class SimpleWorld implements VirtualWorld {
   private final float pitch;
 
   public SimpleWorld(@NonNull Dimension dimension, double posX, double posY, double posZ, float yaw, float pitch) {
+    this(dimension, dimension.getKey(), posX, posY, posZ, yaw, pitch);
+  }
+
+  public SimpleWorld(@NonNull Dimension dimension, @NonNull String worldName,
+      double posX, double posY, double posZ, float yaw, float pitch) {
     this.dimension = dimension;
+    this.worldName = worldName;
     this.defaultBiome = Biome.of(dimension.getDefaultBiome());
 
     this.spawnX = posX;
@@ -181,6 +189,12 @@ public class SimpleWorld implements VirtualWorld {
   @Override
   public Dimension getDimension() {
     return this.dimension;
+  }
+
+  @NonNull
+  @Override
+  public String getWorldName() {
+    return this.worldName;
   }
 
   @Override
