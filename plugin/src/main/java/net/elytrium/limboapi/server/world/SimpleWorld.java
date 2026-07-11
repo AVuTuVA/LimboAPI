@@ -34,6 +34,7 @@ import net.elytrium.limboapi.api.chunk.VirtualChunk;
 import net.elytrium.limboapi.api.chunk.VirtualWorld;
 import net.elytrium.limboapi.material.Biome;
 import net.elytrium.limboapi.server.world.chunk.SimpleChunk;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.nbt.CompoundBinaryTag;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -61,7 +62,7 @@ public class SimpleWorld implements VirtualWorld {
   public SimpleWorld(@NonNull Dimension dimension, @NonNull String worldName,
       double posX, double posY, double posZ, float yaw, float pitch) {
     this.dimension = dimension;
-    this.worldName = worldName;
+    this.worldName = Key.key(worldName).asString();
     this.defaultBiome = Biome.of(dimension.getDefaultBiome());
 
     this.spawnX = posX;
